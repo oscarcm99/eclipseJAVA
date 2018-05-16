@@ -12,9 +12,11 @@ public class Principal {
 		String cadena = "Oscar";
 		boolean abc = true;
 		String alumno = "albornoz";
+		int contador;
+		int con;
 		
 		System.out.println("Numero entero: " +numero1
-				+  "\n"+
+							+  "\n"+
 						   "Decimal: " +decimal +"\n"+
 						   "Caracter: " +caracter + "\n"+
 						   "Cadena de caracteres: " +cadena +"\n" +
@@ -54,6 +56,16 @@ public class Principal {
 		char letra = alumno.charAt(i);
 		System.out.println(letra);
 	}
+	contador = 0;
+	while(contador<=15) {
+		System.out.println("\n" +contador);
+		contador++;
 	}
-
+	con = 0;
+	do {
+		System.out.println("Estoy fuera");
+		con++;
+	}while(con <=5);
+	}
+	
 }
