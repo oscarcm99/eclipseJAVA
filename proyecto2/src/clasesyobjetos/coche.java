@@ -1,5 +1,7 @@
 package clasesyobjetos;
-
+import java.time.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 public class coche {
 	// 1. Definir los atributos
 	String matricula;
@@ -95,7 +97,15 @@ public class coche {
 		return "coche [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", año=" + año + ", color="
 				+ color + ", precio=" + precio + ", motor=" + motor + ", itv=" + itv + "]";
 	}
-	
-
+	//5. Implementar metodos
+	public double precioIva(){
+		return getPrecio() * 1.21;
+	}
+		
+	public int añoCoche() {
+		Calendar fecha = new GregorianCalendar();
+		int añoCurso = fecha.get(Calendar.YEAR);
+		return añoCurso - getAño();
+	}
 	
 }
