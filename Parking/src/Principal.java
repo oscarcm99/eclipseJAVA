@@ -22,6 +22,7 @@ public class Principal {
 		
 		switch(opcion) {
 		case 1:
+			imprimirParking(parking,filas,columnas);
 			break;
 		case 2:
 			break;
@@ -41,11 +42,25 @@ public class Principal {
 		}while(opcion!=7);
 	}
 
+	private static void imprimirParking(char[][] parking, int filas, int columnas) {
+		// TODO Auto-generated method stub
+		for(int f=0; f<filas; f++) {
+			for(int c=0; c<columnas;c++) {
+				System.out.print(parking[f][c]);
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+
 	private static void inicializarParking(char[][] parking, int filas, int columnas) {
 		// TODO Auto-generated method stub
 		for(int f=0; f<filas; f++) {
 			for(int c=0; c<columnas; c++) {
-				if()
+				parking[0][0] = 'X';
+				parking[0][8] = 'X';
+				parking[4][0] = 'X';
+				parking[4][8] = 'X';
 			}
 	}
 
