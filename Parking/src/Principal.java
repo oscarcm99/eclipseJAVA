@@ -57,10 +57,11 @@ public class Principal {
 		// TODO Auto-generated method stub
 		for(int f=0; f<filas; f++) {
 			for(int c=0; c<columnas; c++) {
-				parking[0][0] = 'X';
-				parking[0][8] = 'X';
-				parking[4][0] = 'X';
-				parking[4][8] = 'X';
+				parking[f][c] = '\0';
+				if((f == 0 && c == 0) || (f == 0 && c == 9) || (f == 4 && c == 0) || (f == 4 && c == 9))
+					parking[f][c] = 'X';
+				if((f == 0 && c>=1 && c<9) || (f == 4 && c>=1 && c<9))
+					parking[f][c] = 'P';
 			}
 	}
 
