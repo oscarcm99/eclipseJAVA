@@ -3,6 +3,9 @@ public class Principal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		String matricula = null,marca = null,modelo = null;
+		int dni = 0;
+		boolean electrico = true;
 		int filas = 5, columnas = 10;
 		char[][] parking = new char[filas][columnas];
 		int opcion, fila,columna;
@@ -58,10 +61,14 @@ public class Principal {
 		for(int f=0; f<filas; f++) {
 			for(int c=0; c<columnas; c++) {
 				parking[f][c] = '\0';
-				if((f == 0 && c == 0) || (f == 0 && c == 9) || (f == 4 && c == 0) || (f == 4 && c == 9))
+				if((f == 0 && c == 0) || (f == 0 && c == 9) || (f == 4 && c == 0) || (f == 4 && c == 9) || (f == 2 && c == 0))
 					parking[f][c] = 'X';
-				if((f == 0 && c>=1 && c<9) || (f == 4 && c>=1 && c<9))
+				if((f == 0 && c>=1 && c<9) || (f == 4 && c>=1 && c<9) || (f>=1 && f<4 && c == 9))
 					parking[f][c] = 'P';
+				if(f==1 && c==0)
+					parking[f][c] = 'E';
+				if(f==3 && c==0)
+					parking[f][c] = 'S';
 			}
 	}
 
