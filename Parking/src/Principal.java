@@ -1,14 +1,18 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Principal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String matricula = null,marca = null,modelo = null;
-		int dni = 0;
-		boolean electrico = true;
+		String marca = null,matricula = null,modelo = null,compañia = null;
+		int dni = 0,cilindrada = 0,plazas = 0;
+		boolean electrico = false;
+		Coche coche = new Coche(matricula,marca,modelo,dni,electrico);
+		Autobus autobus = new Autobus(matricula,marca,modelo,plazas,compañia);
+		Moto moto = new Moto(matricula,marca,modelo,cilindrada);
 		int filas = 5, columnas = 10;
 		char[][] parking = new char[filas][columnas];
-		int opcion, fila,columna;
+		int opcion, fila = 0,columna = 0, recCoche = 0, recAutobus = 0, recMoto = 0;
 		Scanner teclado = new Scanner(System.in);
 		inicializarParking(parking,filas,columnas);
 		do {
@@ -28,21 +32,179 @@ public class Principal {
 			imprimirParking(parking,filas,columnas);
 			break;
 		case 2:
+			comprarCochePlaza(parking,fila,columna,teclado,recCoche,coche);
 			break;
 		case 3:
+			comprarMotoPlaza(parking,fila,columna,teclado,recMoto,moto);
 			break;
 		case 4:
+			comprarAutobusPlaza(parking,fila,columna,teclado,recAutobus,autobus);
 			break;
 		case 5:
+			retiradaPlaza(parking,fila,columna,teclado);
 			break;
 		case 6:
+			System.out.println("Recaudacion de coche: " +recCoche +"€");
+			System.out.println("Recaudacion de coche: " +recMoto +"€");
+			System.out.println("Recaudacion de coche: " +recAutobus +"€");
 			break;
 		case 7:
 			break;
 		default:
+			System.out.println("Introduce otra opcion.");
 			break;
 		}
 		}while(opcion!=7);
+	}
+
+	private static void retiradaPlaza(char[][] parking, int fila, int columna, Scanner teclado) {
+		// TODO Auto-generated method stub
+		try {
+			System.out.println("introduzca fila: ");
+			fila = teclado.nextInt();
+			System.out.println("Introduzca columna: ");
+			columna = teclado.nextInt();
+			if(parking[fila][columna] == 'C' || parking[fila][columna] == 'A' || parking[fila][columna] == 'M') {
+				parking[fila][columna] = '0';
+				System.out.println("Plaza retirada con exito");
+			}else
+				System.out.println("Esta plaza esta ocupada o no existe como tal");
+		}catch(InputMismatchException error) {
+			System.out.println("No introduzca palabras raras.");
+		}catch(ArrayIndexOutOfBoundsException error) {
+			System.out.println("Has introudcido numeros de mas");
+}
+	}
+
+	private static void comprarAutobusPlaza(char[][] parking, int fila, int columna, Scanner teclado, int recAutobus,
+			Autobus autobus) {
+		// TODO Auto-generated method stub
+		try {
+		 	System.out.println("introduzca fila: ");
+			fila = teclado.nextInt();
+			System.out.println("Introduzca columna: ");
+			columna = teclado.nextInt();
+			if(parking[fila][columna] == 'X' || parking[fila][columna] == 'P' || parking[fila][columna] == 'E' || parking[fila][columna] == 'S' || parking[fila][columna] == 'C' || parking[fila][columna] == 'A' || parking[fila][columna] == 'M') {
+				if(parking[fila][columna] == 'X')
+					System.out.println("Esta es la esquina.");
+				if(parking[fila][columna] == 'X')
+					System.out.println("Esta es la pared.");
+				if(parking[fila][columna] == 'E')
+					System.out.println("Esta es la entrada.");
+				if(parking[fila][columna] == 'S')
+					System.out.println("Esta es la salida.");
+				if(parking[fila][columna] == 'C')
+					System.out.println("Aqui hay un coche");
+				if(parking[fila][columna] == 'A')
+					System.out.println("Aqui hay un autobus");
+				if(parking[fila][columna] == 'M')
+					System.out.println("Aqui hay una moto");
+	 }else {
+		 parking[fila][columna] = 'A';
+		 	System.out.println("Matricula:");
+			autobus.matricula = teclado.next();
+			System.out.println("Marca:");
+			autobus.marca = teclado.next();
+			System.out.println("Modelo:");
+			autobus.modelo = teclado.next();
+			System.out.println("Plazas");
+			autobus.plazas = teclado.nextInt();
+			System.out.println("Compañia: ");
+			autobus.compañia = teclado.next();
+			recAutobus+=10;
+	 }
+					
+	 }catch(InputMismatchException error) {
+		 System.out.println("No introduzca palabras.");
+	 }catch(ArrayIndexOutOfBoundsException error) {
+		 System.out.println("No introduzca palabras.");
+	 }
+	}
+
+	private static void comprarMotoPlaza(char[][] parking, int fila, int columna, Scanner teclado, int recMoto, Moto moto) {
+		// TODO Auto-generated method stub
+		 try {
+			 	System.out.println("introduzca fila: ");
+				fila = teclado.nextInt();
+				System.out.println("Introduzca columna: ");
+				columna = teclado.nextInt();
+				if(parking[fila][columna] == 'X' || parking[fila][columna] == 'P' || parking[fila][columna] == 'E' || parking[fila][columna] == 'S' || parking[fila][columna] == 'C' || parking[fila][columna] == 'A' || parking[fila][columna] == 'M') {
+					if(parking[fila][columna] == 'X')
+						System.out.println("Esta es la esquina.");
+					if(parking[fila][columna] == 'X')
+						System.out.println("Esta es la pared.");
+					if(parking[fila][columna] == 'E')
+						System.out.println("Esta es la entrada.");
+					if(parking[fila][columna] == 'S')
+						System.out.println("Esta es la salida.");
+					if(parking[fila][columna] == 'C')
+						System.out.println("Aqui hay un coche");
+					if(parking[fila][columna] == 'A')
+						System.out.println("Aqui hay un autobus");
+					if(parking[fila][columna] == 'M')
+						System.out.println("Aqui hay una moto");
+		 }else {
+			 parking[fila][columna] = 'M';
+			 	System.out.println("Matricula:");
+				moto.matricula = teclado.next();
+				System.out.println("Marca:");
+				moto.marca = teclado.next();
+				System.out.println("Modelo:");
+				moto.modelo = teclado.next();
+				System.out.println("Cilindrada: ");
+				moto.cilindrada = teclado.nextInt();
+				recMoto+=3;
+		 }
+						
+		 }catch(InputMismatchException error) {
+			 System.out.println("No introduzca palabras.");
+		 }catch(ArrayIndexOutOfBoundsException error) {
+			 System.out.println("No introduzca palabras.");
+		 }
+	}
+
+	private static void comprarCochePlaza(char[][] parking, int fila, int columna, Scanner teclado,int recCoche, Coche coche) {
+		// TODO Auto-generated method stub
+		 try {
+			 	System.out.println("introduzca fila: ");
+				fila = teclado.nextInt();
+				System.out.println("Introduzca columna: ");
+				columna = teclado.nextInt();
+				if(parking[fila][columna] == 'X' || parking[fila][columna] == 'P' || parking[fila][columna] == 'E' || parking[fila][columna] == 'S' || parking[fila][columna] == 'C' || parking[fila][columna] == 'A' || parking[fila][columna] == 'M') {
+					if(parking[fila][columna] == 'X')
+						System.out.println("Esta es la esquina.");
+					if(parking[fila][columna] == 'X')
+						System.out.println("Esta es la pared.");
+					if(parking[fila][columna] == 'E')
+						System.out.println("Esta es la entrada.");
+					if(parking[fila][columna] == 'S')
+						System.out.println("Esta es la salida.");
+					if(parking[fila][columna] == 'C')
+						System.out.println("Aqui hay un coche");
+					if(parking[fila][columna] == 'A')
+						System.out.println("Aqui hay un autobus");
+					if(parking[fila][columna] == 'M')
+						System.out.println("Aqui hay una moto");
+		 }else {
+			 parking[fila][columna] = 'C';
+			 	System.out.println("Matricula:");
+				coche.matricula = teclado.next();
+				System.out.println("Marca:");
+				coche.marca = teclado.next();
+				System.out.println("Modelo:");
+				coche.modelo = teclado.next();
+				System.out.println("DNI");
+				coche.dni = teclado.nextInt();
+				//System.out.println("Es electrico:");
+				//coche.electrico = teclado.hasNext();
+				recCoche+=5;
+		 }
+						
+		 }catch(InputMismatchException error) {
+			 System.out.println("No introduzca palabras.");
+		 }catch(ArrayIndexOutOfBoundsException error) {
+			 System.out.println("No introduzca palabras.");
+		 }
 	}
 
 	private static void imprimirParking(char[][] parking, int filas, int columnas) {
@@ -60,7 +222,7 @@ public class Principal {
 		// TODO Auto-generated method stub
 		for(int f=0; f<filas; f++) {
 			for(int c=0; c<columnas; c++) {
-				parking[f][c] = '\0';
+				parking[f][c] = 'R';
 				if((f == 0 && c == 0) || (f == 0 && c == 9) || (f == 4 && c == 0) || (f == 4 && c == 9) || (f == 2 && c == 0))
 					parking[f][c] = 'X';
 				if((f == 0 && c>=1 && c<9) || (f == 4 && c>=1 && c<9) || (f>=1 && f<4 && c == 9))
@@ -69,6 +231,8 @@ public class Principal {
 					parking[f][c] = 'E';
 				if(f==3 && c==0)
 					parking[f][c] = 'S';
+				if(f>=1 && f<4 && c>=1 && c<8)
+					parking[f][c] = '0';
 			}
 	}
 
