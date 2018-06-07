@@ -1,15 +1,15 @@
-
+//Clase padre
 public class Vehiculo {
-	protected String matricula;
-	protected String marca;
-	protected String modelo;
-
+	protected String matricula;//Atributos
+	protected String marca;//Atributos
+	protected String modelo;//Atributos
+//Constructor
 	public Vehiculo(String matricula, String marca, String modelo) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
 	}
-
+//Getters and setters
 	protected String getMatricula() {
 		return matricula;
 	}
@@ -33,7 +33,7 @@ public class Vehiculo {
 	protected void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-
+//Metodo toString
 	@Override
 	public String toString() {
 		return "Vehiculo [matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + "]";
