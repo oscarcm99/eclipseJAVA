@@ -200,7 +200,7 @@ public class Principal {
 		}
 		return comprado;
 	}
-_// Comprar plaza coche lo mismo pasa con las anteriores funciones
+// Comprar plaza coche lo mismo pasa con las anteriores funciones
 	private static boolean comprarCochePlaza(char[][] parking, int fila, int columna, Scanner teclado, Coche coche) {
 		// TODO Auto-generated method stub
 		boolean comprado = false;
